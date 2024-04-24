@@ -1,192 +1,166 @@
-﻿using System.Data;
+﻿using GamarraPlus.Datos;
 using GamarraPlus.Models;
 using GamarraPlus_API.Repositorio.Interfaces;
-using Microsoft.AspNetCore.Mvc.Formatters.Xml;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 
 namespace GamarraPlus_API.Repositorio.DAO
 {
     public class ProductoDAO : IProducto
     {
-        private readonly string cadena;
-
-        public ProductoDAO()
+        public IEnumerable<Producto> ObtenerProductos()
         {
-            cadena = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetConnectionString("sql");
-        }
+            var oLista = new List<Producto>();
+            var cn = new Conexion();
 
-        public string actualizarProducto(Producto reg)
-        {
-            SqlConnection cn = new SqlConnection(cadena);
-
-            string mensaje = "";
-
-            try
+            using (var conexion = new SqlConnection(cn.getCadenaSQL()))
             {
-                SqlCommand cmd = new SqlCommand("sp_editarProducto", cn);
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("sp_listar_producto", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                // Parámetros de entrada
-                cmd.Parameters.AddWithValue("@IdProducto", reg.IdProducto);
-                cmd.Parameters.AddWithValue("@Nombre", reg.Nombre);
-                cmd.Parameters.AddWithValue("@Descripcion", reg.Descripcion);
-                cmd.Parameters.AddWithValue("@IdMarca", reg.oMarca);
-                cmd.Parameters.AddWithValue("@IdCategoria", reg.oCategoria);
-                cmd.Parameters.AddWithValue("@Precio", reg.Precio);
-                cmd.Parameters.AddWithValue("@Stock", reg.Stock);
-                cmd.Parameters.AddWithValue("@Activo", reg.Activo);
-
-                // Parámetro de salida
-                SqlParameter resultado = new SqlParameter("@Resultado", SqlDbType.Bit);
-                resultado.Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(resultado);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
-
-                bool resultadoValor = (bool)resultado.Value;
-                if (resultadoValor)
+                using (var dr = cmd.ExecuteReader())
                 {
-                    mensaje = "Actualización exitosa.";
+                    while (dr.Read())
+                    {
+                        oLista.Add(new Producto()
+                        {
+                            IdProducto = Convert.ToInt32(dr["IdProducto"]),
+                            Codigo = dr["Codigo"].ToString(),
+                            oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(dr["IdCategoria"]), Descripcion = dr["DesCategoria"].ToString() },
+                            Descripcion = dr["Descripcion"].ToString(),
+                            PrecioCompra = Convert.ToDecimal(dr["PrecioCompra"], new CultureInfo("es-PE")),
+                            PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"], new CultureInfo("es-PE")),
+                            Stock = Convert.ToInt32(dr["Stock"]),
+                        });
+                    }
                 }
-                else
+            }
+
+            return oLista;
+        }
+
+        public Producto ObtenerProductoPorId(int id)
+        {
+            Producto producto = null;
+            var cn = new Conexion();
+
+            using (var conexion = new SqlConnection(cn.getCadenaSQL()))
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("sp_obtener_producto_por_id", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdProducto", id);
+
+                using (var reader = cmd.ExecuteReader())
                 {
-                    mensaje = "No se pudo actualizar el producto.";
+                    if (reader.Read())
+                    {
+                        producto = new Producto()
+                        {
+                            IdProducto = Convert.ToInt32(reader["IdProducto"]),
+                            Codigo = reader["Codigo"].ToString(),
+                            oCategoria = new Categoria()
+                            {
+                                IdCategoria = Convert.ToInt32(reader["IdCategoria"]),
+                                Descripcion = reader["DesCategoria"].ToString()
+                            },
+                            Descripcion = reader["Descripcion"].ToString(),
+                            PrecioCompra = Convert.ToDecimal(reader["PrecioCompra"], new CultureInfo("es-PE")),
+                            PrecioVenta = Convert.ToDecimal(reader["PrecioVenta"], new CultureInfo("es-PE")),
+                            Stock = Convert.ToInt32(reader["Stock"])
+                        };
+                    }
+                }
+            }
+
+            return producto;
+        }
+
+        public string RegistrarProducto(Producto reg)
+        {
+            string mensaje;
+            var cn = new Conexion();
+            try
+            {
+                using (SqlConnection oconexion = new SqlConnection(cn.getCadenaSQL()))
+                {
+                    oconexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_guardar_producto", oconexion);
+                    cmd.Parameters.AddWithValue("Codigo", reg.Codigo);
+                    cmd.Parameters.AddWithValue("IdCategoria", reg.oCategoria.IdCategoria);
+                    cmd.Parameters.AddWithValue("Descripcion", reg.Descripcion);
+                    cmd.Parameters.AddWithValue("PrecioCompra", reg.PrecioCompra);
+                    cmd.Parameters.AddWithValue("PrecioVenta", reg.PrecioVenta);
+                    cmd.Parameters.AddWithValue("Stock", reg.Stock);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+                    mensaje = "Registro exitoso";
                 }
             }
             catch (Exception ex)
             {
-                mensaje = "Error al actualizar el producto: " + ex.Message;
+                mensaje = ex.Message;
             }
-            finally
-            {
-                cn.Close();
-            }
-
             return mensaje;
         }
 
-        /*
-        public string eliminarProducto(Producto id)
+        public string ActualizarProducto(Producto reg)
         {
-            SqlConnection cn = new SqlConnection(cadena);
-
-            int resultado = 0;
-            string mensaje = "";
-            cn.Open() ;
+            string mensaje;
+            var cn = new Conexion();
             try
             {
-                SqlCommand cmd = new SqlCommand("", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("IdProducto", id);
-            }
-        }
-
-        public Producto obtenerProductoPorId(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-                /*
-        public Producto obtenerProductoPorId(string id)
-        {
-           var producto = obtenerProductos().Where(p => p.IdProducto == id).FirstOrDefault();
-           if (producto == null)        
-               return new Producto();          
-           else       
-               return producto;
-
-        }*/
-
-        public IEnumerable<Producto> obtenerProductos()
-        {
-            List<Producto> lstProductos = new List<Producto>();
-            SqlConnection cn = new SqlConnection(cadena);
-
-            SqlCommand cmd = new SqlCommand("sp_obtenerProducto", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cn.Open();
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                Producto reg = new Producto();
-                reg.IdProducto = dr.GetInt32("IdProducto");
-                reg.Nombre = dr.GetString("Nombre");
-                reg.Descripcion = dr.GetString("Descripcion");
-                reg.Precio = dr.GetDecimal("Precio");
-                reg.Stock = dr.GetInt32("Stock");
-                reg.RutaImagen = dr.GetString("RutaImagen");
-                reg.Activo = dr.GetBoolean("Activo");
-
-                Marca marca = new Marca();
-                marca.IdMarca = dr.GetInt32("IdMarca");
-                marca.Descripcion = dr.GetString("DescripcionMarca");
-                reg.oMarca = marca;
-
-                Categoria cat = new Categoria();
-                cat.IdCategoria = dr.GetInt32("IdCategoria");
-                cat.Descripcion = dr.GetString("DescripcionCategoria");
-                reg.oCategoria = cat;
-                lstProductos.Add(reg);
-
-            }
-
-            dr.Close();
-            cn.Close();
-            return lstProductos;
-        }
-
-        public string registrarProducto(Producto reg)
-        {
-            SqlConnection cn = new SqlConnection(cadena);
-
-            string mensaje = "";
-
-            try
-            {
-                SqlCommand cmd = new SqlCommand("sp_registrarProducto", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                // Parámetros de entrada
-                cmd.Parameters.AddWithValue("@Nombre", reg.Nombre);
-                cmd.Parameters.AddWithValue("@Descripcion", reg.Descripcion);
-                cmd.Parameters.AddWithValue("@IdMarca", reg.oMarca);
-                cmd.Parameters.AddWithValue("@IdCategoria", reg.oCategoria);
-                cmd.Parameters.AddWithValue("@Precio", reg.Precio);
-                cmd.Parameters.AddWithValue("@Stock", reg.Stock);
-                cmd.Parameters.AddWithValue("@RutaImagen", reg.RutaImagen);
-
-                // Parámetro de salida
-                SqlParameter resultado = new SqlParameter("@Resultado", SqlDbType.Int);
-                resultado.Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(resultado);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
-
-                int resultadoValor = Convert.ToInt32(resultado.Value);
-                if (resultadoValor > 0)
+                using (SqlConnection oconexion = new SqlConnection(cn.getCadenaSQL()))
                 {
-                    mensaje = "Producto registrado con éxito. ID del nuevo producto: " + resultadoValor;
-                }
-                else
-                {
-                    mensaje = "No se pudo registrar el producto.";
+                    oconexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_editar_producto", oconexion);
+                    cmd.Parameters.AddWithValue("IdProducto", reg.IdProducto);
+                    cmd.Parameters.AddWithValue("Codigo", reg.Codigo);
+                    cmd.Parameters.AddWithValue("IdCategoria", reg.oCategoria.IdCategoria);
+                    cmd.Parameters.AddWithValue("Descripcion", reg.Descripcion);
+                    cmd.Parameters.AddWithValue("PrecioCompra", reg.PrecioCompra);
+                    cmd.Parameters.AddWithValue("PrecioVenta", reg.PrecioVenta);
+                    cmd.Parameters.AddWithValue("Stock", reg.Stock);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+                    mensaje = "Actualización exitosa";
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                mensaje = "Error al registrar el producto: " + ex.Message;
+                mensaje = ex.Message;
             }
-            finally
-            {
-                cn.Close();
-            }
-
             return mensaje;
+        }
+
+        public bool EliminarProducto(int idProducto)
+        {
+            bool exito = false;
+            var cn = new Conexion();
+            try
+            {
+                using (SqlConnection oconexion = new SqlConnection(cn.getCadenaSQL()))
+                {
+                    oconexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_eliminar_producto", oconexion);
+                    cmd.Parameters.AddWithValue("IdProducto", idProducto);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                    exito = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                // Loguear el error si es necesario
+            }
+            return exito;
         }
 
     }

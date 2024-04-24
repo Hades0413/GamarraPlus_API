@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\migve\\OneDrive\\Escritorio\\taaa\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj": {}
+    "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\migve\\OneDrive\\Escritorio\\taaa\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj": {
+    "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\migve\\OneDrive\\Escritorio\\taaa\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj",
+        "projectUniqueName": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj",
         "projectName": "GamarraPlus_API",
-        "projectPath": "C:\\Users\\migve\\OneDrive\\Escritorio\\taaa\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj",
+        "projectPath": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\GamarraPlus_API.csproj",
         "packagesPath": "C:\\Users\\migve\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\migve\\OneDrive\\Escritorio\\taaa\\GamarraPlus_API\\GamarraPlus_API\\obj\\",
+        "outputPath": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\migve\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -42,12 +42,12 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[7.0.9, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
