@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GamarraPlus_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a43d3aadacda31fa1369e7fe96b15bc9ba4249f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+938e17457bde50e3ed407ad237e39ab3088f409b")]
 [assembly: System.Reflection.AssemblyProductAttribute("GamarraPlus_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GamarraPlus_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
