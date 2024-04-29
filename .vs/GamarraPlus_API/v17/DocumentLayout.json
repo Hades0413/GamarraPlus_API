@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|c:\\users\\migve\\onedrive\\escritorio\\proyecto\\gamarraplus_api\\gamarraplus_api\\repositorio\\dao\\productodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|solutionrelative:gamarraplus_api\\repositorio\\dao\\productodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|c:\\users\\migve\\onedrive\\escritorio\\proyecto\\gamarraplus_api\\gamarraplus_api\\repositorio\\interfaces\\iproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|solutionrelative:gamarraplus_api\\repositorio\\interfaces\\iproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|c:\\users\\migve\\onedrive\\escritorio\\proyecto\\gamarraplus_api\\gamarraplus_api\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|solutionrelative:gamarraplus_api\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|c:\\users\\migve\\onedrive\\escritorio\\proyecto\\gamarraplus_api\\gamarraplus_api\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|solutionrelative:gamarraplus_api\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|c:\\users\\migve\\onedrive\\escritorio\\proyecto\\gamarraplus_api\\gamarraplus_api\\repositorio\\interfaces\\icategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AF4EF9E-BB7D-4940-A69B-C95C3B054B4B}|GamarraPlus_API\\GamarraPlus_API.csproj|solutionrelative:gamarraplus_api\\repositorio\\interfaces\\icategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,16 +50,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "InventarioController.cs",
               "DocumentMoniker": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Controllers\\InventarioController.cs",
               "RelativeDocumentMoniker": "GamarraPlus_API\\Controllers\\InventarioController.cs",
               "ToolTip": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Controllers\\InventarioController.cs",
               "RelativeToolTip": "GamarraPlus_API\\Controllers\\InventarioController.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAuwGwAAAAJAAAA",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAmwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T01:18:35.553Z",
+              "WhenOpened": "2024-04-28T18:29:25.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ICategoria.cs",
+              "DocumentMoniker": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Repositorio\\Interfaces\\ICategoria.cs",
+              "RelativeDocumentMoniker": "GamarraPlus_API\\Repositorio\\Interfaces\\ICategoria.cs",
+              "ToolTip": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Repositorio\\Interfaces\\ICategoria.cs",
+              "RelativeToolTip": "GamarraPlus_API\\Repositorio\\Interfaces\\ICategoria.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-28T18:26:37.565Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IProducto.cs",
+              "DocumentMoniker": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Repositorio\\Interfaces\\IProducto.cs",
+              "RelativeDocumentMoniker": "GamarraPlus_API\\Repositorio\\Interfaces\\IProducto.cs",
+              "ToolTip": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Repositorio\\Interfaces\\IProducto.cs",
+              "RelativeToolTip": "GamarraPlus_API\\Repositorio\\Interfaces\\IProducto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-28T18:24:19.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Repositorio\\DAO\\ProductoDAO.cs",
+              "RelativeDocumentMoniker": "GamarraPlus_API\\Repositorio\\DAO\\ProductoDAO.cs",
+              "ToolTip": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Repositorio\\DAO\\ProductoDAO.cs",
+              "RelativeToolTip": "GamarraPlus_API\\Repositorio\\DAO\\ProductoDAO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAK0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-28T18:07:44.894Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Models\\Producto.cs",
+              "RelativeDocumentMoniker": "GamarraPlus_API\\Models\\Producto.cs",
+              "ToolTip": "C:\\Users\\migve\\OneDrive\\Escritorio\\Proyecto\\GamarraPlus_API\\GamarraPlus_API\\Models\\Producto.cs",
+              "RelativeToolTip": "GamarraPlus_API\\Models\\Producto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-28T18:06:03.043Z"
             }
           ]
         }

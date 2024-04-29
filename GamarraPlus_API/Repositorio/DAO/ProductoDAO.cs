@@ -35,6 +35,7 @@ namespace GamarraPlus_API.Repositorio.DAO
                             PrecioCompra = Convert.ToDecimal(dr["PrecioCompra"], new CultureInfo("es-PE")),
                             PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"], new CultureInfo("es-PE")),
                             Stock = Convert.ToInt32(dr["Stock"]),
+                            RutaImagen = dr["RutaImagen"].ToString()
                         });
                     }
                 }
@@ -71,7 +72,8 @@ namespace GamarraPlus_API.Repositorio.DAO
                             Descripcion = reader["Descripcion"].ToString(),
                             PrecioCompra = Convert.ToDecimal(reader["PrecioCompra"], new CultureInfo("es-PE")),
                             PrecioVenta = Convert.ToDecimal(reader["PrecioVenta"], new CultureInfo("es-PE")),
-                            Stock = Convert.ToInt32(reader["Stock"])
+                            Stock = Convert.ToInt32(reader["Stock"]),
+                            RutaImagen = reader["RutaImagen"].ToString()
                         };
                     }
                 }
@@ -96,6 +98,7 @@ namespace GamarraPlus_API.Repositorio.DAO
                     cmd.Parameters.AddWithValue("PrecioCompra", reg.PrecioCompra);
                     cmd.Parameters.AddWithValue("PrecioVenta", reg.PrecioVenta);
                     cmd.Parameters.AddWithValue("Stock", reg.Stock);
+                    cmd.Parameters.AddWithValue("RutaImagen", reg.RutaImagen);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
@@ -109,6 +112,7 @@ namespace GamarraPlus_API.Repositorio.DAO
             return mensaje;
         }
 
+
         public string ActualizarProducto(Producto reg)
         {
             string mensaje;
@@ -119,13 +123,14 @@ namespace GamarraPlus_API.Repositorio.DAO
                 {
                     oconexion.Open();
                     SqlCommand cmd = new SqlCommand("sp_editar_producto", oconexion);
-                    cmd.Parameters.AddWithValue("IdProducto", reg.IdProducto);
-                    cmd.Parameters.AddWithValue("Codigo", reg.Codigo);
-                    cmd.Parameters.AddWithValue("IdCategoria", reg.oCategoria.IdCategoria);
-                    cmd.Parameters.AddWithValue("Descripcion", reg.Descripcion);
-                    cmd.Parameters.AddWithValue("PrecioCompra", reg.PrecioCompra);
-                    cmd.Parameters.AddWithValue("PrecioVenta", reg.PrecioVenta);
-                    cmd.Parameters.AddWithValue("Stock", reg.Stock);
+                    cmd.Parameters.AddWithValue("@IdProducto", reg.IdProducto);
+                    cmd.Parameters.AddWithValue("@Codigo", reg.Codigo);
+                    cmd.Parameters.AddWithValue("@IdCategoria", reg.oCategoria.IdCategoria);
+                    cmd.Parameters.AddWithValue("@Descripcion", reg.Descripcion);
+                    cmd.Parameters.AddWithValue("@PrecioCompra", reg.PrecioCompra);
+                    cmd.Parameters.AddWithValue("@PrecioVenta", reg.PrecioVenta);
+                    cmd.Parameters.AddWithValue("@Stock", reg.Stock);
+                    cmd.Parameters.AddWithValue("@RutaImagen", reg.RutaImagen);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
@@ -138,6 +143,8 @@ namespace GamarraPlus_API.Repositorio.DAO
             }
             return mensaje;
         }
+
+
 
         public bool EliminarProducto(int idProducto)
         {
@@ -158,7 +165,6 @@ namespace GamarraPlus_API.Repositorio.DAO
             catch (Exception ex)
             {
                 exito = false;
-                // Loguear el error si es necesario
             }
             return exito;
         }
