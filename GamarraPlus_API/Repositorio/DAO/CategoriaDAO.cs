@@ -17,7 +17,6 @@ namespace GamarraPlus_API.Repositorio.DAO
 
             using (var conexion = new SqlConnection(cn.getCadenaSQL()))
             {
-                // Inicializar la cadena de conexión antes de abrir la conexión
                 string connectionString = cn.getCadenaSQL();
                 conexion.ConnectionString = connectionString;
 
@@ -140,7 +139,6 @@ namespace GamarraPlus_API.Repositorio.DAO
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones (puedes cambiar esto según tus necesidades)
                 Console.WriteLine("Error al obtener la categoría por ID: " + ex.Message);
             }
 
